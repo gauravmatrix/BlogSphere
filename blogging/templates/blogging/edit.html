@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Edit Blog</title>
+    {% load static %}
+    <link rel="stylesheet" type="text/css" href="{% static 'blogging/css/edit.css' %}">
+
+    <!-- ✅ Quill Editor CSS -->
+    <link href="https://cdn.quilljs.com/1.3.6/quill.snow.css" rel="stylesheet">
+</head>
+<body>
+
+    <div class="container">
+        <div class="header">
+            <h2>Edit Blog</h2>
+        </div>
+        
+        <form method="post" enctype="multipart/form-data" class="blog-form">
+            {% csrf_token %}
+            
+            <label for="id_name">Title:</label>
+            {{ form.name }}
+
+            <label for="id_category">Category:</label>
+            {{ form.category }}
+
+            <!-- ✅ Hide Default Textarea -->
+            <label for="id_description">Description:</label>
+            <div id="editor"></div>
+            <input type="hidden" name="description" id="hiddenContent">
+
+            <label for="id_image">Upload Image:</label>
+            {{ form.image }}
+            
+            <button type="submit" class="btn-submit">Save Changes</button>
+        </form>
+
+        <a href="{% url 'all_product' %}" class="back-btn">⬅ Back to Blogs</a>
+    </div>
+
+    <!-- ✅ Quill Editor JS -->
+    <script src="https://cdn.quilljs.com/1.3.6/quill.js"></script>
+    
+    <script>
+        document.addEventListener("DOMContentLoaded", function () {
+            console.log("Quill Editor Loaded for Edit Page! ✅");
+
+            var quill = new Quill("#editor", {
+                theme: "snow",
+                placeholder: "Write something amazing...",
+                modules: {
+                    toolbar: [
+                        [{ header: [1, 2, 3, false] }],
+                        ["bold", "italic", "underline", "strike"],
+                        [{ color: [] }, { background: [] }],
+                        [{ align: [] }],
+                        ["blockquote", "code-block"],
+                        ["link", "image"],
+                        ["clean"]
+                    ]
+                }
+            });
+
+            // ✅ Load Existing Data into Quill
+            let descriptionField = document.querySelector("textarea[name='description']");
+            if (descriptionField) {
+                quill.root.innerHTML = descriptionField.value;
+                descriptionField.style.display = "none"; // Hide Default Textarea
+            }
+
+            // ✅ On Form Submit, Copy Quill Data to Hidden Input
+            var form = document.querySelector("form");
+            form.addEventListener("submit", function () {
+                document.querySelector("#hiddenContent").value = quill.root.innerHTML;
+            });
+        });
+    </script>
+</body>
+</html>

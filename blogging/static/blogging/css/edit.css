@@ -1,0 +1,184 @@
+/* ✅ Google Font */
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600&display=swap');
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: 'Poppins', sans-serif;
+}
+
+body {
+    background: linear-gradient(180deg, #4420b1, #8c8a8a);
+    color: #333;
+    overflow-x: hidden;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 100vh;
+    padding: 20px;
+}
+
+/* ✅ Edit Form Container */
+.edit-container {
+    width: 100%;
+    max-width: 900px;
+    background: #ffffff;
+    padding: 35px;
+    box-shadow: 0 6px 18px rgba(0, 0, 0, 0.15);
+    border-radius: 12px;
+    text-align: center;
+    animation: fadeIn 0.6s ease-in-out;
+    transition: all 0.3s ease;
+}
+
+/* ✅ Title */
+.edit-container h2 {
+    font-size: 2.2rem;
+    color: #333;
+    margin-bottom: 20px;
+}
+
+/* ✅ Form Styling */
+.blog-form {
+    text-align: left;
+}
+
+input, select {
+    width: 100%;
+    padding: 12px;
+    margin: 10px 0;
+    border: 1px solid #ccc;
+    border-radius: 8px;
+    font-size: 16px;
+    transition: 0.3s ease-in-out;
+    background: #f7f7f7;
+}
+
+/* ✅ Quill Editor */
+#editor {
+    height: 250px;
+    background: #fff;
+    border: 1px solid #ccc;
+    border-radius: 8px;
+    padding: 10px;
+}
+
+/* ✅ Input Focus Effect */
+input:focus, select:focus {
+    border: 2px solid #FF4081;
+    box-shadow: 0 0 10px rgba(255, 64, 129, 0.4);
+    outline: none;
+    background: #fff;
+}
+
+/* ✅ Buttons */
+.btn {
+    display: inline-block;
+    padding: 12px 22px;
+    margin-top: 15px;
+    font-size: 16px;
+    font-weight: bold;
+    border-radius: 25px;
+    cursor: pointer;
+    transition: 0.3s;
+    text-decoration: none;
+    text-align: center;
+    border: none;
+}
+
+/* ✅ Save Button */
+.save-btn {
+    background: #FF4081;
+    color: white;
+    box-shadow: 0 4px 8px rgba(255, 64, 129, 0.2);
+}
+
+.save-btn:hover {
+    background: #D81B60;
+    transform: scale(1.05);
+    box-shadow: 0 6px 12px rgba(255, 64, 129, 0.3);
+}
+
+/* ✅ Cancel Button */
+.cancel-btn {
+    background: #ddd;
+    color: #333;
+}
+
+.cancel-btn:hover {
+    background: #bbb;
+    transform: scale(1.05);
+}
+
+/* ✅ Popup Messages */
+.popup-message {
+    position: fixed;
+    bottom: 20px;
+    right: 20px;
+    background: #ff9800;
+    color: white;
+    width: auto;
+    max-width: 250px;
+    padding: 12px 18px;
+    border-radius: 8px;
+    font-size: 16px;
+    box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.2);
+    animation: slideIn 0.3s ease-in-out;
+}
+
+/* ✅ Success & Warning Colors */
+.popup-message.success {
+    background: #4CAF50;
+}
+
+.popup-message.warning {
+    background: #FF5733;
+}
+
+.fade-out {
+    opacity: 0;
+    transition: opacity 0.4s ease-in-out;
+}
+
+/* ✅ Animations */
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+        transform: translateY(-10px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+@keyframes slideIn {
+    from {
+        opacity: 0;
+        transform: translateX(20px);
+    }
+    to {
+        opacity: 1;
+        transform: translateX(0);
+    }
+}
+
+/* ✅ Responsive */
+@media (max-width: 768px) {
+    .edit-container {
+        width: 90%;
+        padding: 20px;
+    }
+
+    #editor {
+        height: 200px;
+    }
+
+    .popup-message {
+        right: 10px;
+        bottom: 10px;
+        max-width: 200px;
+        font-size: 14px;
+    }
+}

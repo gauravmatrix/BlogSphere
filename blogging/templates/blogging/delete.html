@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Delete Blog Post</title>
+    {% load static %}
+    <link rel="stylesheet" type="text/css" href="{% static 'blogging/css/delete.css' %}">
+</head>
+<body>
+    <div class="delete-container">
+        <h2>Delete Blog Post</h2>
+        <p>Are you sure you want to delete "<b>{{ product.name }}</b>"?</p>
+        
+        <form method="post">
+            {% csrf_token %}
+            <button type="submit">Yes, Delete</button>
+        </form>
+        
+        <a href="{% url 'all_product' %}" class="cancel-btn">Cancel</a>
+    </div>
+
+    <!-- 🔥 Include JavaScript -->
+    <script src="{% static 'blogging/js/delete.js' %}"></script>
+</body>
+</html>

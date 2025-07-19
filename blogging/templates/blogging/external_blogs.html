@@ -1,0 +1,33 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>External Blogs - BlogSphere</title>
+    <link rel="stylesheet" type="text/css" href="{% static 'blogging/css/external_blogs.css' %}">
+</head>
+<body>
+
+    <section class="hero">
+        <div class="hero-container">
+            <h1>Latest Blogs from API</h1>
+            <a href="{% url 'home' %}" class="btn-explore">🏠 Home</a>
+        </div>
+    </section>
+
+    <div class="blog-wrapper">
+        <h2 class="section-title">Trending Blogs</h2>
+        <div id="blogContainer">
+            <p>Loading blogs... ⏳</p>
+        </div>
+    </div>
+
+    <footer>
+        <p>&copy; 2025 BlogSphere - A Universe of Words ✨</p>
+    </footer>
+
+    <!-- JavaScript File -->
+    <script src="{% static 'blogging/js/external_blogs.js' %}"></script>
+</body>
+</html>

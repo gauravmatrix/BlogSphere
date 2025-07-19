@@ -1,0 +1,33 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>{{ product.name }} - BlogSphere</title>
+    <link rel="stylesheet" type="text/css" href="{% static 'blogging/css/product_detail.css' %}">
+</head>
+<body>
+
+        <!-- Hero Section -->
+        <section class="hero">
+            <div class="hero-container">
+                <h1 class="animated-title">Dive into a World of <span>Unlimited Blogs</span>!</h1>
+                <p id="typing-text">"Blogging: Where ideas come to life!"</p>
+                <a href="{% url 'home' %}" class="btn-explore">Home Page</a>
+                <a href="{% url 'add_product' %}" class="btn-primary">➕ Add Your Blog</a>
+            </div>
+        </section>
+
+    <div class="container">
+        <h1 class="blog-title">{{ product.name }}</h1>
+        <img src="{{ product.image.url }}" alt="{{ product.name }}" class="blog-img">
+        <p class="blog-category">Category: <strong>{{ product.category }}</strong></p>
+        <p class="blog-date">Published on: {{ product.created_at }}</p>
+        <p class="blog-content">{{ product.description}}</p>
+
+        <a href="{% url 'all_product' %}" class="back-btn">🔙 Back to Blogs</a>
+    </div>
+
+</body>
+</html>

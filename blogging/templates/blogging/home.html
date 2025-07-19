@@ -1,0 +1,41 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>BlogSphere - Your Blogging Hub</title>
+    <link rel="stylesheet" type="text/css" href="{% static 'blogging/css/home.css' %}">
+    <script src="{% static 'blogging/js/home.js' %}"></script>
+
+</head>
+<body>
+    <header>
+        <h1 class="animated-heading">Welcome to <span>BlogSphere</span></h1>
+        <p id="typing-text"></p>
+        <a href="{% url 'all_product' %}" class="btn" id="explore-btn">Explore Blogs</a>
+    </header>
+
+    <section class="features">
+        <h2>Why Choose <span>BlogSphere</span>?</h2>
+        <div class="feature-box scroll-reveal">
+            <h3>📝 Create & Share</h3>
+            <p>Write engaging blogs and share your thoughts with the world.</p>
+        </div>
+        <div class="feature-box scroll-reveal">
+            <h3>📖 Read & Explore</h3>
+            <p>Discover a variety of blogs across different topics.</p>
+        </div>
+        <div class="feature-box scroll-reveal">
+            <h3>🌟 Connect & Inspire</h3>
+            <p>Engage with a community of passionate bloggers.</p>
+        </div>
+    </section>
+
+    <footer>
+        <p>&copy; 2025 BlogSphere | Your Blogging Universe 🌍</p>
+    </footer>
+
+    <script src="{% static 'blogging/js/home.js' %}"></script>
+</body>
+</html>

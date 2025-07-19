@@ -1,0 +1,87 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Explore Blogs - BlogSphere</title>
+
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+    
+
+    <!-- Google Font & Custom CSS -->
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600&display=swap" rel="stylesheet">
+    <link rel="stylesheet" type="text/css" href="{% static 'blogging/css/all_product.css' %}">
+</head>
+<body>
+    
+    <!-- Hero Section -->
+    <section class="hero">
+        <div class="hero-container">
+            <h1 class="animated-title">Dive into a World of <span>Unlimited Blogs</span>!</h1>
+            <p id="typing-text">"Blogging: Where ideas come to life!"</p>
+            <a href="{% url 'home' %}" class="btn-explore">Home Page</a>
+            <a href="{% url 'add_product' %}" class="btn-primary">➕ Add Your Blog</a>
+            <a href="{% url 'external_blogs' %}" class="btn-explore">📖 External Blogs</a>
+
+        </div>
+    </section>
+
+    <!-- Search & Category Filter -->
+    <div class="search-container">
+        <input type="text" id="searchBar" placeholder="Search by name, ID, or category...">
+        <select id="categoryFilter">
+            <option value="">All Categories</option>
+            <option value="Technology">Technology</option>
+            <option value="Education">Education</option>
+            <option value="Animals">Animals</option>
+            <option value="Flowers">Flowers</option>
+            <option value="Natural">Natural Scene</option>
+            <option value="Historical">Historical Places</option>
+        </select>
+        <button id="toggleMode">🌙 Night Mode</button>
+    </div>
+
+<!-- Blog Listings -->
+<div class="blog-wrapper">
+    <h2 class="section-title">Today's Featured Blogs</h2>
+    <div id="blogContainer">
+        {% for product in products %}
+            <div class="blog-item" data-name="{{ product.name|lower }}" data-id="{{ product.pk }}" data-category="{{ product.category }}">
+                <div class="blog-card">
+                    <span class="blog-id">#{{ product.pk }}</span>
+                    <a href="{% url 'product_detail' product.pk %}">
+                        <img src="{{ product.image.url }}" alt="{{ product.name }}" class="fixed-img">
+                    </a>
+                    <div class="card-body">
+                        <h5 class="card-title">{{ product.name }}</h5>
+                        <p class="card-text">
+                            {{ product.description|truncatechars:200 }}...
+                        <a href="{% url 'product_detail' product.pk %}" class="read-more">Read More</a>
+                        </p>
+                        <small class="badge">{{ product.category }}</small>
+                        <div class="blog-actions">
+                            <a href="{% url 'edit_product' product.pk %}" class="edit-btn">✏ Edit</a>
+                            <a href="{% url 'delete_product' product.pk %}" class="delete-btn">🗑 Delete</a>
+                        </div>
+                        <small class="card-text">📅 Created: {{ product.created_at }}</small> <br>
+                        <small class="card-text">🕒 Updated: {{ product.updated_at }}</small>
+                    </div>
+                </div>
+            </div>
+        {% endfor %}
+    </div>
+</div>
+
+
+
+    <!-- Footer -->
+    <footer>
+        <p>&copy; 2025 BlogSphere - A Universe of Words ✨</p>
+    </footer>
+
+    <!-- Scripts -->
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <script src="{% static 'blogging/js/all_product.js' %}"></script>
+</body>
+</html>

@@ -1,0 +1,115 @@
+/* Google Font */
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600&display=swap');
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: 'Poppins', sans-serif;
+}
+
+/* Hero Section */
+header {
+    background: linear-gradient(135deg, #ff8a00, #da1b60);
+    color: white;
+    text-align: center;
+    padding: 80px 20px;
+    animation: fadeIn 1.5s ease-in-out;
+}
+
+header h1 {
+    font-size: 3rem;
+    font-weight: 600;
+}
+
+header h1 span {
+    color: #fff700;
+}
+
+#typing-text {
+    font-size: 1.2rem;
+    margin-top: 10px;
+    height: 30px;
+    overflow: hidden;
+}
+
+/* Button */
+.btn {
+    display: inline-block;
+    margin-top: 20px;
+    padding: 12px 25px;
+    background: white;
+    color: #da1b60;
+    font-weight: 600;
+    border-radius: 25px;
+    text-decoration: none;
+    transition: 0.3s;
+}
+
+.btn:hover {
+    background: #fff700;
+    color: #ff8a00;
+    transform: scale(1.1);
+}
+
+/* Features Section */
+.features {
+    text-align: center;
+    padding: 60px 20px;
+}
+
+.features h2 {
+    font-size: 2.5rem;
+    color: #333;
+    margin-bottom: 20px;
+}
+
+.features h2 span {
+    color: #da1b60;
+}
+
+.feature-box {
+    background: #f7f7f7;
+    padding: 20px;
+    margin: 15px auto;
+    width: 80%;
+    max-width: 400px;
+    border-radius: 10px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    transition: transform 0.3s;
+    opacity: 0;
+    transform: translateY(30px);
+}
+
+.feature-box:hover {
+    transform: translateY(-5px);
+}
+
+/* Footer */
+footer {
+    text-align: center;
+    padding: 20px;
+    background: #222;
+    color: white;
+}
+
+/* Animations */
+@keyframes fadeIn {
+    from { opacity: 0; transform: translateY(-20px); }
+    to { opacity: 1; transform: translateY(0); }
+}
+
+/* Scroll Reveal Effect */
+.scroll-reveal {
+    transition: opacity 0.6s ease-out, transform 0.6s ease-out;
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+    header h1 {
+        font-size: 2.5rem;
+    }
+    .features h2 {
+        font-size: 2rem;
+    }
+}

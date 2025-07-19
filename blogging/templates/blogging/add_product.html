@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Add New Blog</title>
+    {% load static %}
+    <link rel="stylesheet" type="text/css" href="{% static 'blogging/css/add_product.css' %}">
+
+    <!-- ✅ Quill Editor CSS -->
+    <link href="https://cdn.quilljs.com/1.3.6/quill.snow.css" rel="stylesheet">
+</head>
+<body>
+
+   <!-- 🚀 Hero Section -->
+   <section class="hero">
+        <h1>Dive into a World of <span>Unlimited Blogs!</span></h1>
+        <div class="hero-buttons">
+            <a href="{% url 'home' %}" class="btn explore">Home Page</a>
+            <a href="{% url 'all_product' %}" class="btn homes">Blog Collection</a>
+            <a href="{% url 'add_product' %}" class="btn add-blog">+ Add Your Blog</a>
+        </div>
+    </section>
+
+    <div class="container">
+        <div class="header">
+            <h2>Add New Blog</h2>
+        </div>
+        
+        <form method="post" enctype="multipart/form-data" class="blog-form">
+            {% csrf_token %}
+            
+            <label for="id_name">Title:</label>
+            {{ form.name }}
+
+            <label for="id_category">Category:</label>
+            {{ form.category }}
+
+            <!-- ✅ Pehle Wali Textarea Hide Kar Rahe Hain -->
+            <label for="id_description">Description:</label>
+            <div id="editor"></div>
+            <input type="hidden" name="description" id="hiddenContent">
+
+            <label for="id_image">Upload Image:</label>
+            {{ form.image }}
+            
+            <button type="submit" class="btn-submit">Add Blog</button>
+        </form>
+
+        <a href="{% url 'all_product' %}" class="back-btn">⬅ Back to Blogs</a>
+    </div>
+
+    <!-- ✅ Quill Editor JS -->
+    <script src="https://cdn.quilljs.com/1.3.6/quill.js"></script>
+    
+    <!-- ✅ Custom Script for Quill -->
+    <script>
+        document.addEventListener("DOMContentLoaded", function () {
+            console.log("Text Editor Loaded! ✅");
+
+            var quill = new Quill("#editor", {
+                theme: "snow",
+                placeholder: "Write something amazing...",
+                modules: {
+                    toolbar: [
+                        [{ header: [1, 2, 3, false] }],
+                        ["bold", "italic", "underline", "strike"],
+                        [{ color: [] }, { background: [] }],
+                        [{ align: [] }],
+                        ["blockquote", "code-block"],
+                        ["link", "image"],
+                        ["clean"]
+                    ]
+                }
+            });
+
+            // ✅ Pehle Se Available Content Ko Show Karna
+            let descriptionField = document.querySelector("textarea[name='description']");
+            if (descriptionField) {
+                quill.root.innerHTML = descriptionField.value;
+                descriptionField.style.display = "none"; // Hide Default Textarea
+            }
+
+            // ✅ Form Submit Hone Se Pehle Quill Ka Data Hidden Input Me Save Karna
+            var form = document.querySelector("form");
+            form.addEventListener("submit", function () {
+                document.querySelector("#hiddenContent").value = quill.root.innerHTML;
+            });
+        });
+    </script>
+</body>
+</html>
